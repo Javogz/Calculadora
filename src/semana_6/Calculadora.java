@@ -516,12 +516,24 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void puntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoActionPerformed
         r.setText(r.getText() + ".");
+        if (r.getText().equals("")){
+            r.setText("0.");
+        }else{
+        int cpuntos=0;
+        for (int i = 0; i < r.getText().length(); i++) {
+            if (Character.toString(r.getText().charAt(i)).equals(".")) {
+                cpuntos++;
+            }
+            if (cpuntos>1) {
+                r.setText(r.getText()+".");
+            }
+        }
+        }
     }//GEN-LAST:event_puntoActionPerformed
 
     private void igualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_igualActionPerformed
         ope.setN2(Double.parseDouble(r.getText()));
         r.setText(Double.toString(ope.operacion(simbolo)));
-
     }//GEN-LAST:event_igualActionPerformed
 
     private void sumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaActionPerformed
@@ -560,6 +572,7 @@ public class Calculadora extends javax.swing.JFrame {
         String cadenaNueva = cadena.substring(0, cadena.length() - 1);
         // Compruebas que si lo borró 
         r.setText(cadenaNueva);
+        
     }//GEN-LAST:event_borrarActionPerformed
 
     private void raizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizActionPerformed
